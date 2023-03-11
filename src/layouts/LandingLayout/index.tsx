@@ -11,7 +11,8 @@ export default function LandingLayout() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col relative">
+        <div className="absolute inset-0 background bg-bottom bg-cover" style={{ backgroundImage: 'url("https://storage.googleapis.com/nori-prod-cms-uploads/bg_hero_a0cc1f017e/bg_hero_a0cc1f017e.png")' }} />
         <div className="relative">
           <Navbar />
           <AlertMessage className="absolute top-5 w-full" />
