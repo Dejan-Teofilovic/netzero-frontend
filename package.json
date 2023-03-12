@@ -12,6 +12,7 @@
     "@iconify/react": "^4.1.0",
     "@material-tailwind/react": "^1.4.2",
     "axios": "^1.3.4",
+    "html-react-parser": "^3.0.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.2"

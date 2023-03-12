@@ -4,11 +4,15 @@ import { Icon } from '@iconify/react'
 import useMobileMenu from '../../hooks/useMobileMenu'
 import { Link } from 'react-router-dom';
 
+/* -------------------------------------------------------------------- */
+
 interface INavLink {
   id: number;
   label: string;
   to: string;
 }
+
+/* -------------------------------------------------------------------- */
 
 const NAV_LINKS: Array<INavLink> = [
   {
@@ -22,6 +26,8 @@ const NAV_LINKS: Array<INavLink> = [
     to: '/offset-project'
   }
 ]
+
+/* -------------------------------------------------------------------- */
 
 export default function Navbar() {
   const { openMenu, closeMenu, opened } = useMobileMenu()
@@ -59,7 +65,7 @@ export default function Navbar() {
     <div className="sticky top-0 z-20">
       <div className={`relative ${isShadow && 'shadow-2xl'}`}>
         <div className="relative px-6 py-4 z-20">
-          <div className="container mx-auto">
+          <div className="container max-w-6xl mx-auto">
             <div className="flex justify-between items-center md:items-end">
               <img src="vite.svg" alt="Logo" className="w-12" />
 
