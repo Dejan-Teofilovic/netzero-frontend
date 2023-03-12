@@ -1,8 +1,12 @@
 import React from 'react'
 
+/* -------------------------------------------------------------------- */
+
 interface IProps {
   className?: string;
 }
+
+/* -------------------------------------------------------------------- */
 
 export default function Footer({ className = '' }: IProps) {
   return (

@@ -2,6 +2,9 @@ import React from 'react'
 import HeroSection from './HeroSection'
 import GetInvolvedSection from './GetInvolvedSection'
 import TrustedBySection from './TrustedBySection'
+import NotAllSection from './NotAllSection'
+
+/* -------------------------------------------------------------------- */
 
 export default function HomePage() {
   return (
@@ -11,6 +14,7 @@ export default function HomePage() {
         <GetInvolvedSection />
       </div>
       <TrustedBySection />
+      <NotAllSection />
     </div>
   )
 }

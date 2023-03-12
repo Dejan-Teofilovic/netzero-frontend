@@ -1,11 +1,15 @@
-
+import React from "react";
 import { Button } from "@material-tailwind/react";
 import SectionTitle from "../../components/SectionTitle";
+
+/* -------------------------------------------------------------------- */
 
 interface IData {
   id: number;
   image: string;
 }
+
+/* -------------------------------------------------------------------- */
 
 const DATA: Array<IData> = [
   {
@@ -45,6 +49,8 @@ const DATA: Array<IData> = [
     image: '/assets/images/logogroup-orange-comet.png'
   },
 ]
+
+/* -------------------------------------------------------------------- */
 
 export default function TrustedBySection() {
   return (
