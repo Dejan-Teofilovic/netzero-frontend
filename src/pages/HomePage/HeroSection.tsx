@@ -1,4 +1,4 @@
-import { createElement, ReactNode } from "react"
+import React, { ReactNode } from "react"
 import { Icon } from "@iconify/react";
 import parse from 'html-react-parser'
 
@@ -40,7 +40,7 @@ export default function HeroSection() {
   return (
     <div className="h-fit">
       <div className="absolute inset-0">
-        <img src="/assets/images/home-bg-hero.png" alt="" className="h-full w-full" />
+        <img src="/assets/images/home-bg-hero.png" alt="" className="h-[55%] w-full" />
       </div>
 
       <div className="container max-w-6xl mx-auto relative flex flex-col gap-32">

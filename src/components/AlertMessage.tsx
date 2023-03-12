@@ -2,9 +2,13 @@ import React from "react";
 import { Alert } from "@material-tailwind/react";
 import useAlertMessage from "../hooks/useAlertMessage";
 
+/* ----------------------------------------------------------- */
+
 interface IProps {
   className?: string;
 }
+
+/* ----------------------------------------------------------- */
 
 export default function AlertMessage({ className = '' }: IProps) {
   const { closeAlert, isOpened, color, message, title, icon } = useAlertMessage()
