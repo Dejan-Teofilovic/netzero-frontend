@@ -5,6 +5,7 @@ import TrustedBySection from './TrustedBySection'
 import NotAllSection from './NotAllSection'
 import MarketDrivenSection from './MarketDrivenSection'
 import BackedBySection from './BackedBySection'
+import OurMarketplaceSection from './OurMarketplaceSection'
 
 /* -------------------------------------------------------------------- */
 
@@ -19,6 +20,7 @@ export default function HomePage() {
       <NotAllSection />
       <MarketDrivenSection />
       <BackedBySection />
+      <OurMarketplaceSection />
     </div>
   )
 }
