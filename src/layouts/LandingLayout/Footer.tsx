@@ -11,9 +11,9 @@ interface IProps {
 export default function Footer({ className = '' }: IProps) {
   return (
     <div className={className}>
-      <div className="mt-12 py-6 border-t">
-        <p className="text-center">
-          © {new Date().getFullYear()} Prototype of React + Material-Tailwind + TypeScript
+      <div className="py-6 bg-gray-900">
+        <p className="text-center text-white">
+          © {new Date().getFullYear()} Nori
         </p>
       </div>
     </div>
