@@ -1,5 +1,8 @@
+import React from "react";
 import { Button } from "@material-tailwind/react";
 import SectionTitle from "../../components/SectionTitle";
+
+/* -------------------------------------------------------------------- */
 
 export default function PurchaseCarbonSection() {
   return (
