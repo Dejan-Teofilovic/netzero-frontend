@@ -1,5 +1,7 @@
 import SectionTitle from "../../components/SectionTitle";
 
+/* -------------------------------------------------------------------- */
+
 export default function MarketDrivenSection() {
   return (
     <div className="bg-gradient-to-t from-[#1EA8AA] to-blue-900 py-24">
