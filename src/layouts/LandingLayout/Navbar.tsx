@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react'
 import { Button, IconButton } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
+import { Link, useLocation } from 'react-router-dom';
 import useMobileMenu from '../../hooks/useMobileMenu'
-import { Link } from 'react-router-dom';
 
 /* -------------------------------------------------------------------- */
 
@@ -30,6 +30,7 @@ const NAV_LINKS: Array<INavLink> = [
 /* -------------------------------------------------------------------- */
 
 export default function Navbar() {
+  const { pathname } = useLocation()
   const { openMenu, closeMenu, opened } = useMobileMenu()
 
   const [isShadow, setIsShadow] = useState<boolean>(false)
@@ -41,6 +42,14 @@ export default function Navbar() {
       return 'material-symbols:menu-rounded'
     }
   }, [opened])
+
+  const navbarBgClassName = useMemo(() => {
+    if (pathname === '/') {
+      return 'bg-gradient-to-t from-[#11909d] to-blue-900'
+    } else {
+      return ''
+    }
+  }, [])
 
   const toggleMobileMenu = () => {
     if (opened) {
@@ -63,8 +72,8 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-0 z-20">
-      <div className={`relative ${isShadow && 'shadow-2xl'}`}>
-        <div className="relative px-6 py-4 z-20">
+      <div className={`relative ${isShadow ? 'shadow-2xl' : ''}`}>
+        <div className={`relative px-6 py-4 z-20 ${navbarBgClassName}`}>
           <div className="container max-w-6xl mx-auto">
             <div className="flex justify-between items-center md:items-end">
               <img src="vite.svg" alt="Logo" className="w-12" />

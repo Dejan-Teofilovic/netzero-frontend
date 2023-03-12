@@ -34,7 +34,7 @@ const DATA: Array<IData> = [
 export default function GetInvolvedSection() {
   return (
     <div
-      className="py-32 bg-cover"
+      className="pt-16 pb-32 bg-cover"
       style={{
         backgroundImage: 'url(/assets/images/yellow-map-bg.jpg)'
       }}

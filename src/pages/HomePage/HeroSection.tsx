@@ -38,11 +38,13 @@ const ITEMS: Array<IItem> = [
 
 export default function HeroSection() {
   return (
-    <div className="h-fit">
-      <div className="absolute inset-0">
-        <img src="/assets/images/home-bg-hero.png" alt="" className="h-[55%] w-full" />
-      </div>
-
+    <div
+      className="pt-32 pb-64 bg-cover"
+      style={{
+        background: 'url(/assets/images/home-bg-hero.png) no-repeat',
+        backgroundPosition: 'bottom'
+      }}
+    >
       <div className="container max-w-6xl mx-auto relative flex flex-col gap-32">
         <div className="grid grid-cols-2 items-center gap-12">
           <div className="col-span-1">
