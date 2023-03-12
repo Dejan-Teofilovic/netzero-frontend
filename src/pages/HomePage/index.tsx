@@ -3,6 +3,7 @@ import HeroSection from './HeroSection'
 import GetInvolvedSection from './GetInvolvedSection'
 import TrustedBySection from './TrustedBySection'
 import NotAllSection from './NotAllSection'
+import MarketDrivenSection from './MarketDrivenSection'
 
 /* -------------------------------------------------------------------- */
 
@@ -15,6 +16,7 @@ export default function HomePage() {
       </div>
       <TrustedBySection />
       <NotAllSection />
+      <MarketDrivenSection />
     </div>
   )
 }

@@ -11,7 +11,7 @@ interface IProps {
 
 export default function SectionTitle({ className = '', title }: IProps) {
   return (
-    <h2 className={`text-3xl font-bold text-center ${className}`}>
+    <h2 className={`text-3xl font-bold ${className}`}>
       {title}
     </h2>
   )

@@ -34,14 +34,14 @@ const DATA: Array<IData> = [
 export default function GetInvolvedSection() {
   return (
     <div
-      className="pt-16 pb-32 bg-cover"
+      className="pt-16 pb-32 bg-cover flex flex-col items-center gap-16"
       style={{
         backgroundImage: 'url(/assets/images/yellow-map-bg.jpg)'
       }}
     >
       <SectionTitle title="Get Involved in the Nori Marketplace" />
 
-      <div className="container max-w-6xl mx-auto mt-16">
+      <div className="container max-w-6xl mx-auto">
         <div className="grid grid-cols-3 gap-16">
           {DATA.map(dataItem => (
             <div key={dataItem.id} className="col-span-1 flex flex-col gap-4 items-center">
