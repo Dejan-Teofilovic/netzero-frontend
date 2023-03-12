@@ -6,6 +6,7 @@ import NotAllSection from './NotAllSection'
 import MarketDrivenSection from './MarketDrivenSection'
 import BackedBySection from './BackedBySection'
 import OurMarketplaceSection from './OurMarketplaceSection'
+import PurchaseCarbonSection from './PurchaseCarbonSection'
 
 /* -------------------------------------------------------------------- */
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       <MarketDrivenSection />
       <BackedBySection />
       <OurMarketplaceSection />
+      <PurchaseCarbonSection />
     </div>
   )
 }
