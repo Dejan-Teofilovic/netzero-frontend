@@ -54,3 +54,15 @@
 .overflow_wrap_break_word {
   overflow-wrap: break-word;
 }
+
+.bg_ocean {
+  background: url(/assets/images/ocean-wave-drip-both-bg.png) no-repeat;
+}
+
+.bg_bottom {
+  background-position: bottom !important;
+}
+
+.bg_cover: {
+  background-size: cover !important;
+}
