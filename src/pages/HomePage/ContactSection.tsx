@@ -1,8 +1,10 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Button } from "@material-tailwind/react";
-import Input from "../../components/Input";
-import SectionTitle from "../../components/SectionTitle";
 import { Icon } from "@iconify/react";
+
+const SectionTitle = lazy(() => import('../../components/SectionTitle'))
+const Input = lazy(() => import('../../components/Input'))
+
 
 /* -------------------------------------------------------------------- */
 

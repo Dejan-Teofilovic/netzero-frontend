@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Button, IconButton } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
 import { Link, useLocation } from 'react-router-dom';
-import useMobileMenu from '../../hooks/useMobileMenu'
+import useMobileMenu from '../../hooks/useMobileMenu';
 
 /* -------------------------------------------------------------------- */
 
@@ -76,7 +76,9 @@ export default function Navbar() {
         <div className={`relative px-6 py-4 z-20 ${navbarBgClassName}`}>
           <div className="container max-w-6xl mx-auto">
             <div className="flex justify-between items-center md:items-end">
-              <img src="vite.svg" alt="Logo" className="w-12" />
+              <Link to="/">
+                <img src="vite.svg" alt="Logo" className="w-12" />
+              </Link>
 
               {/* For Desktop */}
               <div className="hidden lg:flex gap-1">

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { Navigate, useRoutes } from "react-router-dom";
-import LandingLayout from "./layouts/LandingLayout";
-import HomePage from "./pages/HomePage";
+
+const LandingLayout = lazy(() => import('./layouts/LandingLayout'))
+const HomePage = lazy(() => import('./pages/HomePage'))
 
 export default function Routes() {
   return useRoutes([

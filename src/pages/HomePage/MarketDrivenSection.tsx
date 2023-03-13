@@ -1,4 +1,6 @@
-import SectionTitle from "../../components/SectionTitle";
+import React, { lazy } from 'react'
+
+const SectionTitle = lazy(() => import('../../components/SectionTitle'))
 
 /* -------------------------------------------------------------------- */
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { lazy } from "react";
 import { Button } from "@material-tailwind/react";
-import SectionTitle from "../../components/SectionTitle";
+const SectionTitle = lazy(() => import('../../components/SectionTitle'))
 
 /* -------------------------------------------------------------------- */
 

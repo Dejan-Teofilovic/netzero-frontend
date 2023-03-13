@@ -1,10 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import AlertMessage from "../../components/AlertMessage";
 import Loading from "../../components/Loading";
 import useLoading from "../../hooks/useLoading";
-import Footer from "./Footer";
-import Navbar from "./Navbar";
+
+const Footer = lazy(() => import('./Footer'))
+const Navbar = lazy(() => import('./Navbar'))
 
 /* -------------------------------------------------------------------- */
 
@@ -13,16 +14,16 @@ export default function LandingLayout() {
 
   return (
     <>
-      <div className="min-h-screen flex flex-col relative">
-        <div className="relative">
+      <Suspense fallback={<Loading />}>
+        <div className="min-h-screen flex flex-col relative">
           <Navbar />
-          <AlertMessage className="absolute top-5 w-full" />
+          <AlertMessage className="fixed top-5 z-30 w-full" />
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <Footer />
         </div>
-        <div className="flex-1">
-          <Outlet />
-        </div>
-        <Footer />
-      </div>
+      </Suspense>
       {isLoading && <Loading />}
     </>
   );
