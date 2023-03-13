@@ -1,5 +1,6 @@
 import React, { lazy } from 'react';
 import { Navigate, useRoutes } from "react-router-dom";
+import Signup from './pages/Signup';
 
 const LandingLayout = lazy(() => import('./layouts/LandingLayout'))
 const HomePage = lazy(() => import('./pages/HomePage'))
@@ -18,6 +19,10 @@ export default function Routes() {
         {
           path: 'login',
           element: <Login />
+        },
+        {
+          path: 'signup',
+          element: <Signup />
         },
         {
           path: '*',

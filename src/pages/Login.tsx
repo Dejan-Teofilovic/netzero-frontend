@@ -71,7 +71,7 @@ export default function Login() {
         </div>
         <div className="flex flex-col gap-4">
           <Button className="bg-primary normal-case text-base mt-8" onClick={() => formik.handleSubmit()}>
-            Login
+            Log in
           </Button>
           <p>
             Don't have account? <Link className="text-primary" to="/signup">Click here</Link> to sign up.
