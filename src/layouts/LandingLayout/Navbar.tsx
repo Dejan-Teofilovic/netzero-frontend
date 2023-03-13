@@ -47,9 +47,9 @@ export default function Navbar() {
     if (pathname === '/') {
       return 'bg-gradient-to-t from-[#11909d] to-blue-900'
     } else {
-      return ''
+      return 'bg-gradient-to-t from-[#11909d] to-blue-900'
     }
-  }, [])
+  }, [pathname])
 
   const toggleMobileMenu = () => {
     if (opened) {
@@ -102,13 +102,17 @@ export default function Navbar() {
 
               <Button
                 className="hidden lg:flex bg-secondary hover:bg-secondary text-black text-sm normal-case"
-              >Get Started</Button>
+              >
+                <Link to="/login">
+                  Login
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
 
         {opened && (
-          <div className={`absolute w-full flex lg:hidden flex-col items-center backdrop-blur-2xl px-4 ${isShadow && 'shadow-2xl'}`}>
+          <div className={`absolute w-full flex lg:hidden flex-col items-center backdrop-blur-2xl px-4 py-4 ${isShadow && 'shadow-2xl'} ${navbarBgClassName}`}>
             {NAV_LINKS.map(navLink => (
               <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
                 <Link to={navLink.to}>{navLink.label}</Link>
@@ -117,7 +121,11 @@ export default function Navbar() {
             <div className="h-0.5 bg-white bg-opacity-25 w-full my-4" />
             <Button
               className="bg-secondary hover:bg-secondary text-black text-sm normal-case"
-            >Get Started</Button>
+            >
+              <Link to="/login">
+                Login
+              </Link>
+            </Button>
           </div>
         )}
       </div>
