@@ -104,7 +104,7 @@ export default function Navbar() {
                 className="hidden lg:flex bg-secondary hover:bg-secondary text-black text-sm normal-case"
               >
                 <Link to="/login">
-                  Login
+                  Log in
                 </Link>
               </Button>
             </div>
