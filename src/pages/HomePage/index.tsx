@@ -28,7 +28,7 @@ export default function HomePage() {
         <BackedBySection />
         <OurMarketplaceSection />
         <PurchaseCarbonSection />
-        {/* <AsSeenSection /> */}
+        <AsSeenSection />
         {/* <ContactSection /> */}
       </Suspense>
     </div>

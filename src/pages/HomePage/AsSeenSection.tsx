@@ -77,9 +77,9 @@ const DATA: Array<IDataItem> = [
 
 export default function AsSeenSection() {
   return (
-    <div className="container max-w-6xl mx-auto flex flex-col items-center gap-16">
+    <div className="container max-w-6xl mx-auto flex flex-col items-center gap-8 lg:gap-16 px-4 lg:px-0">
       <SectionTitle title="As Seen In" />
-      <div className="grid grid-cols-3 gap-8 items-center">
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 items-center">
         {DATA.map(dataItem => (
           <div key={dataItem.id} className="col-span-1 flex justify-center">
             <img src={dataItem.image} alt="" className="w-3/5 h-fit" />
