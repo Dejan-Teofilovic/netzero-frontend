@@ -29,7 +29,7 @@ export default function HomePage() {
         <OurMarketplaceSection />
         <PurchaseCarbonSection />
         <AsSeenSection />
-        {/* <ContactSection /> */}
+        <ContactSection />
       </Suspense>
     </div>
   )

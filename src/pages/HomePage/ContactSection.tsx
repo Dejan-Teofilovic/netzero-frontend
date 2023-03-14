@@ -53,12 +53,12 @@ const DATA: Array<IDataItem> = [
 
 export default function ContactSection() {
   return (
-    <div className="py-36 bg_ocean bg_cover bg_bottom">
+    <div className="py-24 lg:py-36 bg_ocean bg_cover bg_bottom px-4 lg:px-0">
       <div className="container max-w-6xl mx-auto">
         <div className="grid grid-cols-2 gap-16">
-          <div className="col-span-1 flex flex-col gap-4">
+          <div className="col-span-2 lg:col-span-1 flex flex-col gap-4">
             <SectionTitle title="The Nori Wrap" />
-            <p>
+            <p className="text-center lg:text-left">
               Sign up for Nori's weekly newsletter, The Nori Wrap, to stay updated on Nori news, events, job listings, and more.
             </p>
             <Input type="email" placeholder="Email address" className="text-lg border border-gray-400" />
@@ -67,9 +67,9 @@ export default function ContactSection() {
             </Button>
           </div>
 
-          <div className="col-span-1 flex flex-col gap-4">
+          <div className="col-span-2 lg:col-span-1 flex flex-col gap-4">
             <SectionTitle title="Say Hello 👋" />
-            <p>Reach out to us on social!</p>
+            <p className="text-center lg:text-left">Reach out to us on social!</p>
             <div className="flex items-center gap-4">
               {DATA.map(dataItem => (
                 <a key={dataItem.id} className="text-5xl text-primary" href={dataItem.url} target="_blank">
