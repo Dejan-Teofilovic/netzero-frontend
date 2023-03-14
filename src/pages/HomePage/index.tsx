@@ -20,7 +20,7 @@ export default function HomePage() {
       <Suspense fallback={<Loading />}>
         <div>
           <HeroSection />
-          {/* <GetInvolvedSection /> */}
+          <GetInvolvedSection />
         </div>
         {/* <TrustedBySection /> */}
         {/* <NotAllSection /> */}
