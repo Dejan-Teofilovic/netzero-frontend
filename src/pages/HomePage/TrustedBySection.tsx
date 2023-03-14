@@ -60,9 +60,9 @@ export default function TrustedBySection() {
         alt=""
         className="absolute w-full h-full top-0 object-fill"
       />
-      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-12 relative pb-24">
+      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-6 lg:gap-12 relative pb-12 lg:pb-24 px-4 lg:px-0">
         <SectionTitle title="We're Trusted By" />
-        <div className="grid grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 items-center">
           {DATA.map(dataItem => (
             <div key={dataItem.id} className="col-span-1 flex justify-center">
               <img src={dataItem.image} alt="" className="w-3/5 h-fit" />

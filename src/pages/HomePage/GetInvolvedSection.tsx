@@ -43,7 +43,7 @@ export default function GetInvolvedSection() {
     >
       <SectionTitle title="Get Involved in the Nori Marketplace" />
 
-      <div className="container max-w-6xl mx-auto">
+      <div className="container max-w-6xl mx-auto px-4 lg:px-0">
         <div className="hidden lg:grid grid-cols-3 gap-16">
           {DATA.map(dataItem => (
             <div key={dataItem.id} className="col-span-1 flex flex-col gap-4 items-center">

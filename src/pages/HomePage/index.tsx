@@ -16,13 +16,13 @@ const ContactSection = lazy(() => import('./ContactSection'))
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-24">
+    <div className="flex flex-col gap-12 lg:gap-24">
       <Suspense fallback={<Loading />}>
         <div>
           <HeroSection />
           <GetInvolvedSection />
         </div>
-        {/* <TrustedBySection /> */}
+        <TrustedBySection />
         {/* <NotAllSection /> */}
         {/* <MarketDrivenSection /> */}
         {/* <BackedBySection /> */}
