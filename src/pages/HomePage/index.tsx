@@ -20,16 +20,16 @@ export default function HomePage() {
       <Suspense fallback={<Loading />}>
         <div>
           <HeroSection />
-          <GetInvolvedSection />
+          {/* <GetInvolvedSection /> */}
         </div>
-        <TrustedBySection />
-        <NotAllSection />
-        <MarketDrivenSection />
-        <BackedBySection />
-        <OurMarketplaceSection />
-        <PurchaseCarbonSection />
-        <AsSeenSection />
-        <ContactSection />
+        {/* <TrustedBySection /> */}
+        {/* <NotAllSection /> */}
+        {/* <MarketDrivenSection /> */}
+        {/* <BackedBySection /> */}
+        {/* <OurMarketplaceSection /> */}
+        {/* <PurchaseCarbonSection /> */}
+        {/* <AsSeenSection /> */}
+        {/* <ContactSection /> */}
       </Suspense>
     </div>
   )
