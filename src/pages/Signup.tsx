@@ -1,11 +1,16 @@
 import React from "react";
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { useFormik } from "formik";
 import Input from "../components/Input";
 import { ISignupData } from "../utils/interfaces";
 import { MSG_REQUIRED_FIELD } from "../utils/constants";
+import api from "../utils/api";
+import useUser from "../hooks/useUser";
+import useLoading from "../hooks/useLoading";
+import { Icon } from "@iconify/react";
+import useAlertMessage from "../hooks/useAlertMessage";
 
 /* -------------------------------------------------------------------- */
 
@@ -20,6 +25,11 @@ const validationSchema = yup.object().shape({
 /* -------------------------------------------------------------------- */
 
 export default function Signup() {
+  const navigate = useNavigate()
+  const { openLoading, closeLoading } = useLoading()
+  const { openAlert } = useAlertMessage()
+  const { setTokenAct } = useUser()
+
   const initialValues: ISignupData = {
     firstName: '',
     lastName: '',
@@ -32,7 +42,38 @@ export default function Signup() {
     initialValues,
     validationSchema,
     onSubmit: (values) => {
-      console.log(values)
+      openLoading()
+      const { firstName, lastName, email, password } = values
+      api.post('/auth/signup', { firstName, lastName, email, password })
+        .then(response => {
+          if (response.data) {
+            setTokenAct(response.data)
+            closeLoading()
+            openAlert({
+              color: 'green',
+              icon: <Icon icon="material-symbols:check-small-rounded" className="text-2xl" />,
+              title: 'Success',
+              message: 'Logged in.'
+            })
+            navigate('/dashboard')
+          }
+        })
+        .catch(error => {
+          closeLoading()
+
+          if (error?.response?.status === 400) {
+            return openAlert({
+              color: 'blue',
+              message: 'Already registered. Please login..'
+            })
+          }
+          return openAlert({
+            color: 'red',
+            icon: <Icon icon="fluent-mdl2:status-error-full" className="text-2xl" />,
+            title: 'Error',
+            message: error?.response?.statusText || 'Sign up error.'
+          })
+        })
     }
   })
 

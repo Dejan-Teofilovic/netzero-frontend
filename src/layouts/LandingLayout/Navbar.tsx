@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from 'react'
-import { Button, IconButton } from '@material-tailwind/react'
+import { Button, IconButton, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useMobileMenu from '../../hooks/useMobileMenu';
+import useUser from '../../hooks/useUser';
 
 /* -------------------------------------------------------------------- */
 
@@ -30,8 +31,10 @@ const NAV_LINKS: Array<INavLink> = [
 /* -------------------------------------------------------------------- */
 
 export default function Navbar() {
+  const navigate = useNavigate()
   const { pathname } = useLocation()
   const { openMenu, closeMenu, opened } = useMobileMenu()
+  const { token, logout } = useUser()
 
   const [isShadow, setIsShadow] = useState<boolean>(false)
 
@@ -70,6 +73,10 @@ export default function Navbar() {
 
   window.addEventListener('scroll', toggleShadow);
 
+  const handleLogout = () => {
+    logout()
+  }
+
   return (
     <div className="sticky top-0 z-20">
       <div className={`relative ${isShadow ? 'shadow-2xl' : ''}`}>
@@ -100,13 +107,33 @@ export default function Navbar() {
                 <Icon icon={icon} />
               </IconButton>
 
-              <Button
-                className="hidden lg:flex bg-secondary hover:bg-secondary text-black text-sm normal-case"
-              >
-                <Link to="/login">
-                  Log in
-                </Link>
-              </Button>
+              {token ? (
+                <Menu>
+                  <MenuHandler>
+                    <Button variant="text" className="hidden lg:flex items-center gap-1 px-0 text-base normal-case text-white">
+                      <Icon icon="mdi:user" className="text-2xl" />
+                      My account
+                    </Button>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </MenuItem>
+                    <MenuItem onClick={handleLogout}>
+                      Log out
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              ) : (
+                <Button
+                  className="hidden lg:flex bg-secondary hover:bg-secondary text-black text-sm normal-case"
+                >
+                  <Link to="/login">
+                    Log in
+                  </Link>
+                </Button>
+              )}
+
             </div>
           </div>
         </div>
@@ -118,14 +145,27 @@ export default function Navbar() {
                 <Link to={navLink.to}>{navLink.label}</Link>
               </Button>
             ))}
+
             <div className="h-0.5 bg-white bg-opacity-25 w-full my-4" />
-            <Button
-              className="bg-secondary hover:bg-secondary text-black text-sm normal-case"
-            >
-              <Link to="/login">
-                Login
-              </Link>
-            </Button>
+            {token ? (
+              <>
+                <Button variant="text" className="text-white text-sm normal-case">
+                  <Link to="/dashboard">Dashboard</Link>
+                </Button>
+                <Button variant="text" className="text-white text-sm normal-case" onClick={handleLogout}>
+                  Log out
+                </Button>
+              </>
+            ) : (
+              <Button
+                className="bg-secondary hover:bg-secondary text-black text-sm normal-case"
+              >
+                <Link to="/login">
+                  Login
+                </Link>
+              </Button>
+            )}
+
           </div>
         )}
       </div>

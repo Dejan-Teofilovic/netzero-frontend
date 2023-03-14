@@ -1,11 +1,16 @@
 import React from "react";
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { useFormik } from "formik";
 import Input from "../components/Input";
 import { ILoginData } from "../utils/interfaces";
 import { MSG_REQUIRED_FIELD } from "../utils/constants";
+import useLoading from "../hooks/useLoading";
+import api from "../utils/api";
+import useUser from "../hooks/useUser";
+import useAlertMessage from "../hooks/useAlertMessage";
+import { Icon } from "@iconify/react";
 
 /* -------------------------------------------------------------------- */
 
@@ -17,6 +22,11 @@ const validationSchema = yup.object().shape({
 /* -------------------------------------------------------------------- */
 
 export default function Login() {
+  const navigate = useNavigate()
+  const { openLoading, closeLoading } = useLoading()
+  const { openAlert } = useAlertMessage()
+  const { setTokenAct } = useUser()
+
   const initialValues: ILoginData = {
     email: '',
     password: ''
@@ -27,6 +37,30 @@ export default function Login() {
     validationSchema,
     onSubmit: (values) => {
       console.log(values)
+      openLoading()
+      api.post('/auth/login', values)
+        .then(response => {
+          if (response.data) {
+            setTokenAct(response.data)
+            openAlert({
+              color: 'green',
+              icon: <Icon icon="material-symbols:check-small-rounded" className="text-2xl" />,
+              title: 'Success',
+              message: 'Logged in.'
+            })
+            closeLoading()
+            navigate('/')
+          }
+        })
+        .catch(error => {
+          closeLoading()
+          openAlert({
+            color: 'red',
+            icon: <Icon icon="fluent-mdl2:status-error-full" className="text-2xl" />,
+            title: 'Error',
+            message: error?.response?.statusText || 'Login error.'
+          })
+        })
     }
   })
   return (
