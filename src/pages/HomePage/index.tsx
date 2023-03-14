@@ -25,7 +25,7 @@ export default function HomePage() {
         <TrustedBySection />
         <NotAllSection />
         <MarketDrivenSection />
-        {/* <BackedBySection /> */}
+        <BackedBySection />
         {/* <OurMarketplaceSection /> */}
         {/* <PurchaseCarbonSection /> */}
         {/* <AsSeenSection /> */}

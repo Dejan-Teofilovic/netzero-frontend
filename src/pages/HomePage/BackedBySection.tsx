@@ -73,10 +73,10 @@ const DATA_2: Array<IDataItem2> = [
 
 export default function BackedBySection() {
   return (
-    <div className="flex flex-col gap-24">
-      <div className="container max-w-5xl mx-auto flex flex-col items-center gap-16">
+    <div className="flex flex-col gap-12 lg:gap-24 px-4 lg:px-0">
+      <div className="container max-w-5xl mx-auto flex flex-col items-center gap-8 lg:gap-16">
         <SectionTitle title="Backed By" />
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
           {DATA_1.map(dataItem => (
             <div key={dataItem.id} className="col-span-1 flex justify-center">
               <img src={dataItem.image} alt="" className="w-3/5 h-fit" />
@@ -85,32 +85,46 @@ export default function BackedBySection() {
         </div>
       </div>
 
-      <div className="container max-w-5xl mx-auto flex flex-col gap-24">
-        {DATA_2.map(dataItem => (
-          <div key={dataItem.id} className="grid grid-cols-2 items-center gap-8">
-            {dataItem.id % 2 === 1 ? (
-              <>
-                <div className="col-span-1">
-                  <h3 className="text-3xl font-bold">{dataItem.title}</h3>
-                  <p className="mt-4">{dataItem.description}</p>
-                </div>
-                <div className="col-span-1">
-                  <img src={dataItem.image} alt="" />
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="col-span-1">
-                  <img src={dataItem.image} alt="" />
-                </div>
-                <div className="col-span-1">
-                  <h3 className="text-3xl font-bold">{dataItem.title}</h3>
-                  <p className="mt-4">{dataItem.description}</p>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+      <div className="container max-w-5xl mx-auto">
+        <div className="hidden lg:flex flex-col gap-24">
+          {DATA_2.map(dataItem => (
+            <div key={dataItem.id} className="grid grid-cols-2 items-center gap-8">
+              {dataItem.id % 2 === 1 ? (
+                <>
+                  <div className="col-span-1">
+                    <h3 className="text-3xl font-bold">{dataItem.title}</h3>
+                    <p className="mt-4">{dataItem.description}</p>
+                  </div>
+                  <div className="col-span-1">
+                    <img src={dataItem.image} alt="" />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="col-span-1">
+                    <img src={dataItem.image} alt="" />
+                  </div>
+                  <div className="col-span-1">
+                    <h3 className="text-3xl font-bold">{dataItem.title}</h3>
+                    <p className="mt-4">{dataItem.description}</p>
+                  </div>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex lg:hidden flex-col gap-12">
+          {DATA_2.map(dataItem => (
+            <div className="flex flex-col items-center gap-2" key={dataItem.id}>
+              <h3 className="text-xl font-bold text-center">{dataItem.title}</h3>
+              <div className="w-3/5">
+                <img src={dataItem.image} alt="" />
+              </div>
+              <p className="mt-4 text-center">{dataItem.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
