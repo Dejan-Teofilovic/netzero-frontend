@@ -37,12 +37,12 @@ const DATA: Array<IDataItem> = [
 
 export default function OurMarketplaceSection() {
   return (
-    <div className="bg-blue-900 py-24">
-      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-16">
+    <div className="bg-blue-900 py-12 lg:py-24 px-4 lg:px-0">
+      <div className="container max-w-6xl mx-auto flex flex-col items-center gap-8 lg:gap-16">
         <SectionTitle className="text-white" title="Our Marketplace is Built with Web3 In Mind" />
         <div className="grid grid-cols-3 gap-8">
           {DATA.map(dataItem => (
-            <div key={dataItem.id} className="col-span-1 flex flex-col items-center gap-8">
+            <div key={dataItem.id} className="col-span-3 lg:col-span-1 flex flex-col items-center gap-4 lg:gap-8">
               <div className="flex justify-center">
                 <img src={dataItem.image} alt="" className="w-4/5" />
               </div>

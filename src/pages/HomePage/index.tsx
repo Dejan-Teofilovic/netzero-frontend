@@ -26,8 +26,8 @@ export default function HomePage() {
         <NotAllSection />
         <MarketDrivenSection />
         <BackedBySection />
-        {/* <OurMarketplaceSection /> */}
-        {/* <PurchaseCarbonSection /> */}
+        <OurMarketplaceSection />
+        <PurchaseCarbonSection />
         {/* <AsSeenSection /> */}
         {/* <ContactSection /> */}
       </Suspense>
