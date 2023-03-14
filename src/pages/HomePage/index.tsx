@@ -24,7 +24,7 @@ export default function HomePage() {
         </div>
         <TrustedBySection />
         <NotAllSection />
-        {/* <MarketDrivenSection /> */}
+        <MarketDrivenSection />
         {/* <BackedBySection /> */}
         {/* <OurMarketplaceSection /> */}
         {/* <PurchaseCarbonSection /> */}
