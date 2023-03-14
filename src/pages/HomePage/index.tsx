@@ -23,7 +23,7 @@ export default function HomePage() {
           <GetInvolvedSection />
         </div>
         <TrustedBySection />
-        {/* <NotAllSection /> */}
+        <NotAllSection />
         {/* <MarketDrivenSection /> */}
         {/* <BackedBySection /> */}
         {/* <OurMarketplaceSection /> */}
