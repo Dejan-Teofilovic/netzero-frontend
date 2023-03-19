@@ -1,16 +1,17 @@
-import React from "react";
-import { Button } from "@material-tailwind/react";
+import React, { ChangeEvent, useEffect, useState } from "react";
+import { Button, Radio } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import * as yup from 'yup';
 import { useFormik } from "formik";
+import { Icon } from "@iconify/react";
 import Input from "../components/Input";
-import { ISignupData } from "../utils/interfaces";
+import { ISignupData, IUserType } from "../utils/interfaces";
 import { MSG_REQUIRED_FIELD } from "../utils/constants";
 import api from "../utils/api";
 import useUser from "../hooks/useUser";
 import useLoading from "../hooks/useLoading";
-import { Icon } from "@iconify/react";
 import useAlertMessage from "../hooks/useAlertMessage";
+import { capitalize } from "../utils/functions";
 
 /* -------------------------------------------------------------------- */
 
@@ -30,12 +31,27 @@ export default function Signup() {
   const { openAlert } = useAlertMessage()
   const { setTokenAct } = useUser()
 
+  const [userTypes, setUserTypes] = useState<Array<IUserType>>([])
+  const [userTypeId, setUserTypeId] = useState<number>(1)
+
+  useEffect(() => {
+    openLoading()
+    api.get('/user/get-user-types')
+      .then(response => {
+        setUserTypes(response.data)
+        closeLoading()
+      })
+      .catch(error => {
+        closeLoading()
+      })
+  }, [])
+
   const initialValues: ISignupData = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
   }
 
   const formik = useFormik({
@@ -44,7 +60,7 @@ export default function Signup() {
     onSubmit: (values) => {
       openLoading()
       const { firstName, lastName, email, password } = values
-      api.post('/auth/signup', { firstName, lastName, email, password })
+      api.post('/auth/signup', { firstName, lastName, email, password, userTypeId })
         .then(response => {
           if (response.data) {
             setTokenAct(response.data)
@@ -60,7 +76,6 @@ export default function Signup() {
         })
         .catch(error => {
           closeLoading()
-
           if (error?.response?.status === 400) {
             return openAlert({
               color: 'blue',
@@ -76,6 +91,10 @@ export default function Signup() {
         })
     }
   })
+
+  const handleUserTypeId = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserTypeId(Number(e.target.value))
+  }
 
   return (
     <div className="container max-w-lg mx-auto">
@@ -174,6 +193,24 @@ export default function Signup() {
                 {formik.touched.confirmPassword && formik.errors.confirmPassword}
               </span>
             )}
+          </div>
+
+          {/* Role */}
+          <div className="flex flex-col">
+            <label htmlFor="confirmPassword">Role *</label>
+            <div className="flex items-center gap-4">
+              {userTypes.map((dataItem: IUserType) => (
+                <Radio
+                  id={dataItem.type}
+                  key={dataItem.id}
+                  name="userTypeId"
+                  label={capitalize(dataItem.type)}
+                  value={dataItem.id}
+                  onChange={handleUserTypeId}
+                  defaultChecked={dataItem.id === 1}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div className="flex flex-col gap-4">

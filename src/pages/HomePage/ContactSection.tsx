@@ -5,7 +5,6 @@ import { Icon } from "@iconify/react";
 const SectionTitle = lazy(() => import('../../components/SectionTitle'))
 const Input = lazy(() => import('../../components/Input'))
 
-
 /* -------------------------------------------------------------------- */
 
 interface IDataItem {
@@ -70,7 +69,7 @@ export default function ContactSection() {
           <div className="col-span-2 lg:col-span-1 flex flex-col gap-4">
             <SectionTitle title="Say Hello 👋" />
             <p className="text-center lg:text-left">Reach out to us on social!</p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center lg:justify-start gap-4">
               {DATA.map(dataItem => (
                 <a key={dataItem.id} className="text-5xl text-primary" href={dataItem.url} target="_blank">
                   <Icon icon={dataItem.icon} />

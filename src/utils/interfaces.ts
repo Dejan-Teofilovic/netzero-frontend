@@ -10,3 +10,8 @@ export interface ISignupData {
   password: string;
   confirmPassword: string;
 }
+
+export interface IUserType {
+  id: number;
+  type: string;
+}
