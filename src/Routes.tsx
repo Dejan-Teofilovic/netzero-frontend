@@ -1,6 +1,5 @@
 import React, { lazy, useMemo } from 'react';
 import { Navigate, useRoutes } from "react-router-dom";
-import jwt_decode from 'jwt-decode';
 import useUser from './hooks/useUser';
 import Signup from './pages/Signup';
 
@@ -11,13 +10,6 @@ const ClaimToken = lazy(() => import('./pages/ClaimToken'))
 
 export default function Routes() {
   const { token, user } = useUser()
-
-  // const { user } = useMemo<any>(() => {
-  //   if (token) {
-  //     return jwt_decode(token)
-  //   }
-  //   return {}
-  // }, [token])
 
   return useRoutes([
     {

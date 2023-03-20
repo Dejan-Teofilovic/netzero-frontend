@@ -10,6 +10,7 @@ import useLoading from '../hooks/useLoading'
 import useUser from "../hooks/useUser"
 import Input from "../components/Input"
 import { ADMIN_WALLET_ADDRESS, FEE_PERCENTAGE_FOR_PLATFORM, RATIO_ETH_TO_NZCT, RATIO_NZCT_TO_CARBON, REGEX_NUMBER_VALID } from "../utils/constants"
+import api from "../utils/api"
 
 export default function ClaimToken() {
   const { open } = useWeb3Modal()
@@ -20,7 +21,7 @@ export default function ClaimToken() {
   const { openLoading, closeLoading } = useLoading()
   const { openAlert } = useAlertMessage()
   const { user } = useUser()
-  const { connectWalletAct } = useWalletAddress()
+  const { connectWalletAct, walletAddressId } = useWalletAddress()
 
   const [carbonAmount, setCarbonAmount] = useState<string>('0')
   const [tokenAmount, setTokenAmount] = useState<string>('0')
@@ -33,7 +34,7 @@ export default function ClaimToken() {
     return 0.0000
   }, [ethAmount])
 
-  const { config } = usePrepareSendTransaction({
+  const { config, isError } = usePrepareSendTransaction({
     request: {
       to: ADMIN_WALLET_ADDRESS,
       value: utils.parseEther(`${Number(ethAmount) + Number(fee)}` || '0'),
@@ -46,31 +47,29 @@ export default function ClaimToken() {
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
     onSuccess: () => {
-      closeLoading()
-      openAlert({
-        color: 'green',
-        icon: <Icon icon="material-symbols:check-small-rounded" className="text-2xl" />,
-        title: 'Success',
-        message: 'Claim is registered.'
+      api.post('/claim/create', {
+        tokenAmount: Number(tokenAmount),
+        ethAmount: Number(ethAmount),
+        carbonAmount: Number(carbonAmount),
+        feeAmount: fee,
+        walletAddressId
+      }).then(response => {
+        closeLoading()
+        openAlert({
+          color: 'green',
+          icon: <Icon icon="material-symbols:check-small-rounded" className="text-2xl" />,
+          title: 'Success',
+          message: 'Claim is registered.'
+        })
+      }).catch(error => {
+        closeLoading()
+        openAlert({
+          color: 'red',
+          icon: <Icon icon="fluent-mdl2:status-error-full" className="text-2xl" />,
+          title: 'Error',
+          message: error?.response?.statusText || 'Claim error.'
+        })
       })
-      // api.post('invest/invest', {
-      //   investor: address,
-      //   fundTypeId: 1,
-      //   fundAmount: Number(debouncedSellAmount),
-      //   tokenAmount: Number(buyAmount)
-      // }).then(response => {
-      //   closeLoading();
-      //   openAlert({
-      //     color: 'green',
-      //     message: 'Claimed.'
-      //   });
-      // }).catch(error => {
-      //   closeLoading();
-      //   openAlert({
-      //     color: 'red',
-      //     message: 'Error occured. not claimed.'
-      //   });
-      // });
     }
   });
 
@@ -197,7 +196,7 @@ export default function ClaimToken() {
           )}
           <Button
             className="bg-primary normal-case rounded-sm text-base"
-            disabled={!isConnected || fee <= 0}
+            disabled={!isConnected || fee <= 0 || isError}
             onClick={handleClaim}
           >Claim Token</Button>
         </div>

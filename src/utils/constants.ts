@@ -4,7 +4,7 @@ export const LOCALSTORAGE_TOKEN_NAME = "token";
 
 export const REGEX_NUMBER_VALID = /^[0-9]*\.?[0-9]*$/;
 
-export const RATIO_ETH_TO_NZCT = 0.01;
+export const RATIO_ETH_TO_NZCT = 0.001;
 export const RATIO_NZCT_TO_CARBON = 1;
 
 export const ADMIN_WALLET_ADDRESS =
