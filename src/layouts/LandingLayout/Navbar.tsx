@@ -31,8 +31,8 @@ const NAV_LINKS_OF_EMITTER: Array<INavLink> = [
 const NAV_LINKS_OF_OFFSETTER: Array<INavLink> = [
   {
     id: 1,
-    label: 'Offset Project',
-    to: '/offset-project'
+    label: 'Offset Projects',
+    to: '/offset-projects'
   }
 ]
 
