@@ -4,13 +4,19 @@ import {
   LOCALSTORAGE_TOKEN_NAME,
 } from '../utils/constants';
 import {
+  decodeToken,
   getItemOfLocalStorage,
   removeItemOfLocalStorage,
   setAuthToken,
   setItemOfLocalStorage
 } from '../utils/functions';
+import { IUser } from '../utils/interfaces';
 
 // ----------------------------------------------------------------------
+interface IInitialState {
+  token: string;
+  user?: IUser;
+}
 
 interface IAction {
   type: string,
@@ -27,7 +33,7 @@ interface IHandlers {
 
 // ----------------------------------------------------------------------
 
-const initialState = {
+const initialState: IInitialState = {
   token: ''
 };
 
@@ -38,6 +44,12 @@ const handlers: IHandlers = {
     return {
       ...state,
       token: action.payload
+    };
+  },
+  SET_USER: (state: object, action: IAction) => {
+    return {
+      ...state,
+      user: action.payload
     };
   },
 };
@@ -79,6 +91,16 @@ function UserProvider({ children }: IProps) {
     }
   }, [])
 
+  useEffect(() => {
+    if (state.token) {
+      const decodedToken = decodeToken(state.token)
+      dispatch({
+        type: 'SET_USER',
+        payload: decodedToken?.user
+      })
+    }
+  }, [state.token])
+
   const setTokenAct = (token: string) => {
     setItemOfLocalStorage(LOCALSTORAGE_TOKEN_NAME, token)
     setAuthToken(token)
@@ -94,6 +116,10 @@ function UserProvider({ children }: IProps) {
     dispatch({
       type: 'SET_TOKEN',
       payload: ''
+    })
+    dispatch({
+      type: 'SET_USER',
+      payload: undefined
     })
   }
 

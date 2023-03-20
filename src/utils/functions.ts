@@ -1,3 +1,4 @@
+import jwtDecode from "jwt-decode";
 import api from "./api";
 
 //  Save some value in localStorage
@@ -41,4 +42,9 @@ export const stringToEllipsis = (str: string, length: number): string => {
 //  Capitalize first letter
 export const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+//  Decode token
+export const decodeToken = (token: string): any => {
+  return jwtDecode(token);
 };

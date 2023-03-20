@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { Button, IconButton, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import useUser from '../../hooks/useUser';
 
@@ -15,14 +16,17 @@ interface INavLink {
 
 /* -------------------------------------------------------------------- */
 
-const NAV_LINKS: Array<INavLink> = [
+const NAV_LINKS_OF_EMITTER: Array<INavLink> = [
   {
     id: 1,
-    label: 'Token Issuance',
-    to: '/token-issuance'
-  },
+    label: 'Claim Token',
+    to: '/claim-token'
+  }
+]
+
+const NAV_LINKS_OF_OFFSETTER: Array<INavLink> = [
   {
-    id: 2,
+    id: 1,
     label: 'Offset Project',
     to: '/offset-project'
   }
@@ -37,6 +41,13 @@ export default function Navbar() {
   const { token, logout } = useUser()
 
   const [isShadow, setIsShadow] = useState<boolean>(false)
+
+  const { user } = useMemo<any>(() => {
+    if (token) {
+      return jwt_decode(token)
+    }
+    return {}
+  }, [token])
 
   const icon = useMemo<string>(() => {
     if (opened) {
@@ -89,13 +100,22 @@ export default function Navbar() {
 
               {/* For Desktop */}
               <div className="hidden lg:flex gap-1">
-                {NAV_LINKS.map(navLink => (
-                  <Button key={navLink.id} variant="text" className="text-white text-base normal-case">
-                    <Link to={navLink.to}>
-                      {navLink.label}
-                    </Link>
-                  </Button>
-                ))}
+                {token && (
+                  user?.id_user_type === 1 ?
+                    NAV_LINKS_OF_EMITTER.map(navLink => (
+                      <Button key={navLink.id} variant="text" className="text-white text-base normal-case">
+                        <Link to={navLink.to}>
+                          {navLink.label}
+                        </Link>
+                      </Button>
+                    )) : NAV_LINKS_OF_OFFSETTER.map(navLink => (
+                      <Button key={navLink.id} variant="text" className="text-white text-base normal-case">
+                        <Link to={navLink.to}>
+                          {navLink.label}
+                        </Link>
+                      </Button>
+                    ))
+                )}
               </div>
 
               {/* For Mobile */}
@@ -140,11 +160,21 @@ export default function Navbar() {
 
         {opened && (
           <div className={`absolute w-full flex lg:hidden flex-col items-center backdrop-blur-2xl px-4 py-4 ${isShadow && 'shadow-2xl'} ${navbarBgClassName}`}>
-            {NAV_LINKS.map(navLink => (
-              <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
-                <Link to={navLink.to}>{navLink.label}</Link>
-              </Button>
-            ))}
+            {token && (user?.id_user_type === 1 ?
+              NAV_LINKS_OF_EMITTER.map(navLink => (
+                <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
+                  <Link to={navLink.to}>
+                    {navLink.label}
+                  </Link>
+                </Button>
+              )) : NAV_LINKS_OF_OFFSETTER.map(navLink => (
+                <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
+                  <Link to={navLink.to}>
+                    {navLink.label}
+                  </Link>
+                </Button>
+              )))
+            }
 
             <div className="h-0.5 bg-white bg-opacity-25 w-full my-4" />
             {token ? (
@@ -165,7 +195,6 @@ export default function Navbar() {
                 </Link>
               </Button>
             )}
-
           </div>
         )}
       </div>
