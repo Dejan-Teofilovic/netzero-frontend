@@ -9,7 +9,7 @@ import useWalletAddress from "../hooks/useWalletAddress"
 import useLoading from '../hooks/useLoading'
 import useUser from "../hooks/useUser"
 import Input from "../components/Input"
-import { ADMIN_WALLET_ADDRESS, FEE_PERCENTAGE_FOR_PLATFORM, RATIO_ETH_TO_NZCT, RATIO_NZCT_TO_CARBON, REGEX_NUMBER_VALID } from "../utils/constants"
+import { ADMIN_WALLET_ADDRESS, FEE_OF_EMITTER, RATIO_ETH_TO_NZCT, RATIO_NZCT_TO_CARBON, REGEX_NUMBER_VALID } from "../utils/constants"
 import api from "../utils/api"
 
 export default function ClaimToken() {
@@ -29,7 +29,7 @@ export default function ClaimToken() {
 
   const fee = useMemo<number>(() => {
     if (ethAmount) {
-      return Number(ethAmount) * FEE_PERCENTAGE_FOR_PLATFORM
+      return Number(ethAmount) * FEE_OF_EMITTER
     }
     return 0.0000
   }, [ethAmount])

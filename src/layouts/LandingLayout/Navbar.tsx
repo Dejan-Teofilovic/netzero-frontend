@@ -92,7 +92,7 @@ export default function Navbar() {
           <div className="container max-w-6xl mx-auto">
             <div className="flex justify-between items-center md:items-end">
               <Link to="/">
-                <img src="vite.svg" alt="Logo" className="w-12" />
+                <img src="/vite.svg" alt="Logo" className="w-12" />
               </Link>
 
               {/* For Desktop */}

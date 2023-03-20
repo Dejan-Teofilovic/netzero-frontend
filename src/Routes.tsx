@@ -1,6 +1,7 @@
 import React, { lazy, useMemo } from 'react';
 import { Navigate, useRoutes } from "react-router-dom";
 import useUser from './hooks/useUser';
+import OffsetCarbon from './pages/OffsetCarbon';
 import Signup from './pages/Signup';
 
 const LandingLayout = lazy(() => import('./layouts/LandingLayout'))
@@ -41,6 +42,10 @@ export default function Routes() {
         {
           path: 'offset-projects',
           element: token ? user?.id_user_type === 2 ? <OffsetProjects /> : <Navigate to="/" replace /> : <Navigate to="/" replace />
+        },
+        {
+          path: 'offset/:claimId',
+          element: token ? user?.id_user_type === 2 ? <OffsetCarbon /> : <Navigate to="/" replace /> : <Navigate to="/" replace />
         },
         {
           path: '*',

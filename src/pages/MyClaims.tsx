@@ -3,13 +3,13 @@ import useLoading from "../hooks/useLoading"
 import useUser from "../hooks/useUser"
 import api from "../utils/api"
 import { getVisibleDateTime } from "../utils/functions"
-import { IClaim } from "../utils/interfaces"
+import { IMyClaim } from "../utils/interfaces"
 
 export default function MyClaims() {
   const { user } = useUser()
   const { openLoading, closeLoading } = useLoading()
 
-  const [claims, setClaims] = useState<Array<IClaim>>()
+  const [claims, setClaims] = useState<Array<IMyClaim>>()
 
   useEffect(() => {
     openLoading()

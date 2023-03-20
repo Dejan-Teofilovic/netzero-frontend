@@ -28,7 +28,7 @@ export interface IUser {
   id_user_type: number;
 }
 
-export interface IClaim {
+export interface IMyClaim {
   id: number;
   id_wallet_address: number;
   wallet_address: string;
@@ -48,6 +48,18 @@ export interface IMintableClaim {
   user_first_name: string;
   user_last_name: string;
   wallet_address: string;
+  token_amount: number;
+  eth_amount: number;
+  carbon_amount: number;
+  fee_amount: number;
+  mintable_token_amount: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface IClaim {
+  id: number;
+  id_wallet_address: number;
   token_amount: number;
   eth_amount: number;
   carbon_amount: number;
