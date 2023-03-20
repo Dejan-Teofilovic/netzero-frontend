@@ -48,3 +48,24 @@ export const capitalize = (str: string) => {
 export const decodeToken = (token: string): any => {
   return jwtDecode(token);
 };
+
+//  Get visible date time
+export const getVisibleDateTime = (datetime: Date): string => {
+  let date = datetime.toDateString();
+  let time = datetime.toTimeString();
+  let _time = `${time.split(":")[0]}:${time.split(":")[1]}`;
+  let _date = `${date.split(" ")[1]} ${date.split(" ")[2]}, ${
+    date.split(" ")[3]
+  }`;
+  return `${_time} ${_date}`;
+};
+
+//  Get datetime on the current timezone
+export const convertTimeForClientTimezone = (date: string | Date): Date => {
+  const clientTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  return new Date(
+    (typeof date === "string" ? new Date(date) : date).toLocaleString("en-US", {
+      timeZone: clientTimezone
+    })
+  );
+};

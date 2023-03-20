@@ -73,7 +73,7 @@ function UserProvider({ children }: IProps) {
     if (tokenOfLocalStorage && count === 0) {
       count += 1;
       setAuthToken(tokenOfLocalStorage)
-      api.get('/admin/check-expiration-of-token')
+      api.get('/auth/check-expiration-of-token')
         .then(response => {
           dispatch({
             type: 'SET_TOKEN',

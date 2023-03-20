@@ -84,7 +84,7 @@ export default function ClaimToken() {
       openLoading()
       connectWalletAct(user?.id, address)
     }
-  }, [address, user])
+  }, [address])
 
   const handleClaim = () => {
     sendTransaction?.();

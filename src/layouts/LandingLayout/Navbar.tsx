@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react'
 import { Button, IconButton, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import useUser from '../../hooks/useUser';
 
@@ -21,6 +20,11 @@ const NAV_LINKS_OF_EMITTER: Array<INavLink> = [
     id: 1,
     label: 'Claim Token',
     to: '/claim-token'
+  },
+  {
+    id: 2,
+    label: 'My Claims',
+    to: '/my-claims'
   }
 ]
 
@@ -38,16 +42,9 @@ export default function Navbar() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { openMenu, closeMenu, opened } = useMobileMenu()
-  const { token, logout } = useUser()
+  const { token, logout, user } = useUser()
 
   const [isShadow, setIsShadow] = useState<boolean>(false)
-
-  const { user } = useMemo<any>(() => {
-    if (token) {
-      return jwt_decode(token)
-    }
-    return {}
-  }, [token])
 
   const icon = useMemo<string>(() => {
     if (opened) {
@@ -132,13 +129,10 @@ export default function Navbar() {
                   <MenuHandler>
                     <Button variant="text" className="hidden lg:flex items-center gap-1 px-0 text-base normal-case text-white">
                       <Icon icon="mdi:user" className="text-2xl" />
-                      My account
+                      {user?.first_name} {user?.last_name}
                     </Button>
                   </MenuHandler>
                   <MenuList>
-                    <MenuItem>
-                      <Link to="/dashboard">Dashboard</Link>
-                    </MenuItem>
                     <MenuItem onClick={handleLogout}>
                       Log out
                     </MenuItem>
@@ -179,9 +173,6 @@ export default function Navbar() {
             <div className="h-0.5 bg-white bg-opacity-25 w-full my-4" />
             {token ? (
               <>
-                <Button variant="text" className="text-white text-sm normal-case">
-                  <Link to="/dashboard">Dashboard</Link>
-                </Button>
                 <Button variant="text" className="text-white text-sm normal-case" onClick={handleLogout}>
                   Log out
                 </Button>
