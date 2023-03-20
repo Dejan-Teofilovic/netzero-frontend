@@ -3,7 +3,7 @@ import { Button } from "@material-tailwind/react";
 import { useWeb3Modal } from "@web3modal/react";
 import { utils } from "ethers";
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAccount, useContractWrite, useDisconnect, usePrepareContractWrite, useSigner, useWaitForTransaction } from "wagmi";
 import Input from "../components/Input";
 import useAlertMessage from "../hooks/useAlertMessage";
@@ -15,6 +15,7 @@ import { CHAIN_ID, CONTRACT_ABI, CONTRACT_ADDRESS, FEE_OF_OFFSETTER, RATIO_ETH_T
 import { IClaim, IMyClaim } from "../utils/interfaces";
 
 export default function OffsetCarbon() {
+  const navigate = useNavigate()
   const { claimId } = useParams()
   const { open } = useWeb3Modal()
   const { isConnected, address } = useAccount()
@@ -139,6 +140,7 @@ export default function OffsetCarbon() {
         message: 'Your offset is registered. The reward has been sent to your wallet.'
       })
       closeLoading()
+      navigate('/offset-projects')
     },
     onError: (error) => {
       console.log('>>>>>>> error => ', error)
