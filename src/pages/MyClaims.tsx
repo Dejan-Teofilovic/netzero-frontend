@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react"
-import useLoading from "../hooks/useLoading"
 import useUser from "../hooks/useUser"
 import api from "../utils/api"
+import { INTERVAL_TIME } from "../utils/constants"
 import { getVisibleDateTime } from "../utils/functions"
 import { IMyClaim } from "../utils/interfaces"
 
 export default function MyClaims() {
   const { user } = useUser()
-  const { openLoading, closeLoading } = useLoading()
 
   const [claims, setClaims] = useState<Array<IMyClaim>>()
 
-  useEffect(() => {
-    openLoading()
+  const getClaimsByUserId = () => {
     api.get(`/claim/get-claims-by-user-id/${user?.id}`)
       .then(response => {
         setClaims(response.data)
-        closeLoading()
       })
       .catch(error => {
-        closeLoading()
         console.log('>>>>>>> error of getClaimsByUserId => ', error)
       })
+  }
+
+  useEffect(() => {
+    getClaimsByUserId()
+    const interval = setInterval(() => {
+      getClaimsByUserId()
+    }, INTERVAL_TIME);
+    return () => clearInterval(interval);
   }, [])
 
   return (
