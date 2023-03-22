@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { Button, IconButton, Menu, MenuHandler, MenuItem, MenuList } from '@material-tailwind/react'
 import { Icon } from '@iconify/react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import useUser from '../../hooks/useUser';
 
@@ -39,8 +39,8 @@ const NAV_LINKS_OF_OFFSETTER: Array<INavLink> = [
 /* -------------------------------------------------------------------- */
 
 export default function Navbar() {
-  const navigate = useNavigate()
-  const { pathname } = useLocation()
+  // const navigate = useNavigate()
+  // const { pathname } = useLocation()
   const { openMenu, closeMenu, opened } = useMobileMenu()
   const { token, logout, user } = useUser()
 
@@ -54,13 +54,13 @@ export default function Navbar() {
     }
   }, [opened])
 
-  const navbarBgClassName = useMemo(() => {
-    if (pathname === '/') {
-      return 'bg-gradient-to-t from-[#11909d] to-blue-900'
-    } else {
-      return 'bg-gradient-to-t from-[#11909d] to-blue-900'
-    }
-  }, [pathname])
+  // const navbarBgClassName = useMemo(() => {
+  //   if (pathname === '/') {
+  //     return 'bg-gradient-to-t from-[#11909d] to-blue-900'
+  //   } else {
+  //     return 'bg-gradient-to-t from-[#11909d] to-blue-900'
+  //   }
+  // }, [pathname])
 
   const toggleMobileMenu = () => {
     if (opened) {
@@ -88,11 +88,11 @@ export default function Navbar() {
   return (
     <div className="sticky top-0 z-20">
       <div className={`relative ${isShadow ? 'shadow-2xl' : ''}`}>
-        <div className={`relative px-6 py-4 z-20 ${navbarBgClassName}`}>
+        <div className="relative px-6 py-4 z-20 bg-white">
           <div className="container max-w-6xl mx-auto">
             <div className="flex justify-between items-center md:items-end">
               <Link to="/">
-                <img src="/vite.svg" alt="Logo" className="w-12" />
+                <img src="/assets/images/logo.png" alt="Logo" className="w-16" />
               </Link>
 
               {/* For Desktop */}
@@ -100,13 +100,13 @@ export default function Navbar() {
                 {token && (
                   user?.id_user_type === 1 ?
                     NAV_LINKS_OF_EMITTER.map(navLink => (
-                      <Button key={navLink.id} variant="text" className="text-white text-base normal-case">
+                      <Button key={navLink.id} variant="text" className="text-primary text-base normal-case">
                         <Link to={navLink.to}>
                           {navLink.label}
                         </Link>
                       </Button>
                     )) : NAV_LINKS_OF_OFFSETTER.map(navLink => (
-                      <Button key={navLink.id} variant="text" className="text-white text-base normal-case">
+                      <Button key={navLink.id} variant="text" className="text-primary text-base normal-case">
                         <Link to={navLink.to}>
                           {navLink.label}
                         </Link>
@@ -118,7 +118,7 @@ export default function Navbar() {
               {/* For Mobile */}
               <IconButton
                 variant="text"
-                className="text-3xl flex lg:hidden text-white"
+                className="text-3xl flex lg:hidden text-primary"
                 onClick={toggleMobileMenu}
               >
                 <Icon icon={icon} />
@@ -127,7 +127,7 @@ export default function Navbar() {
               {token ? (
                 <Menu>
                   <MenuHandler>
-                    <Button variant="text" className="hidden lg:flex items-center gap-1 px-0 text-base normal-case text-white">
+                    <Button variant="text" className="hidden lg:flex items-center gap-1 px-0 text-base normal-case text-primary">
                       <Icon icon="mdi:user" className="text-2xl" />
                       {user?.first_name} {user?.last_name}
                     </Button>
@@ -140,7 +140,7 @@ export default function Navbar() {
                 </Menu>
               ) : (
                 <Button
-                  className="hidden lg:flex bg-secondary hover:bg-secondary text-black text-sm normal-case"
+                  className="hidden lg:flex bg-primary hover:bg-primary text-white text-sm normal-case rounded-md"
                 >
                   <Link to="/login">
                     Log in
@@ -153,16 +153,16 @@ export default function Navbar() {
         </div>
 
         {opened && (
-          <div className={`absolute w-full flex lg:hidden flex-col items-center backdrop-blur-2xl px-4 py-4 ${isShadow && 'shadow-2xl'} ${navbarBgClassName}`}>
+          <div className={`border-t-2 border-primary absolute w-full flex lg:hidden flex-col items-center backdrop-blur-2xl px-4 py-4 bg-white ${isShadow && 'shadow-2xl'}`}>
             {token && (user?.id_user_type === 1 ?
               NAV_LINKS_OF_EMITTER.map(navLink => (
-                <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
+                <Button key={navLink.id} variant="text" className="text-primary text-sm normal-case">
                   <Link to={navLink.to}>
                     {navLink.label}
                   </Link>
                 </Button>
               )) : NAV_LINKS_OF_OFFSETTER.map(navLink => (
-                <Button key={navLink.id} variant="text" className="text-white text-sm normal-case">
+                <Button key={navLink.id} variant="text" className="text-primary text-sm normal-case">
                   <Link to={navLink.to}>
                     {navLink.label}
                   </Link>
@@ -170,16 +170,16 @@ export default function Navbar() {
               )))
             }
 
-            <div className="h-0.5 bg-white bg-opacity-25 w-full my-4" />
+            <div className="h-0.5 bg-primary bg-opacity-25 w-full my-4" />
             {token ? (
               <>
-                <Button variant="text" className="text-white text-sm normal-case" onClick={handleLogout}>
+                <Button variant="text" className="text-primary text-sm normal-case" onClick={handleLogout}>
                   Log out
                 </Button>
               </>
             ) : (
               <Button
-                className="bg-secondary hover:bg-secondary text-black text-sm normal-case"
+                className="bg-primary hover:bg-primary text-white text-sm normal-case rounded-md"
               >
                 <Link to="/login">
                   Login
