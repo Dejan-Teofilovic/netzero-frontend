@@ -1,13 +1,16 @@
-# Prototype of React + Material-Tailwind + TypeScript
-Prototype of React + Material-Tailwind + TypeScript
+# NetZero (frontend)
+
+## Live site
+[![Live site](readme_images/guide-site.png)](https://netzerocarbontoken.com/)
 
 ## Contact info
 - **Email:** mr.new0509@gmail.com
 - **Telegram:** [@mrnew0509](https://t.me/mrnew0509)
 - **Skype:** [@sin085](https://join.skype.com/invite/xat3AgpiRVOI)
+- **Skype:** @OpenThink#5316
 
 ## Release date
-TBD
+Mar 22, 2023
 
 ## Environment
 - `Node.js v18.12.1`
