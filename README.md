@@ -1,4 +1,4 @@
-# NetZero (frontend)
+# Netzero (frontend)
 
 ## Live site
 [![Live site](readme_images/guide-site.png)](https://netzerocarbontoken.com/)
